@@ -1,2 +1,2 @@
 # E-commerce
-Ikkincho onlayin magazin uchun qilingan ishlar
+Ikkinchi onlayin magazin uchun qilingan ishlar
