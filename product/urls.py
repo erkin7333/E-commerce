@@ -4,5 +4,7 @@ from .views import *
 app_name = 'product'
 
 urlpatterns = [
-    path('', product_list, name='product_list')
+    path('', home, name='home'),
+
+    path('product-detail/<int:pk>/', ProductDetail.as_view(), name='product_detail')
 ]
