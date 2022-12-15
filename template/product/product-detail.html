@@ -36,7 +36,16 @@
                     </div>
 
                     <p class="lead">
-                        <span>{{ object.price }} UZS</span>
+                        <strong>
+                            {% if object.discount_price %}
+                            <span class="mr-1">
+                                <del>{{ object.price }} UZS</del>
+                            </span>
+                            <span>{{ object.discount_price }} UZS</span>
+                            {% else %}
+                                {{ object.price }} UZS
+                            {% endif %}
+                        </strong>
                     </p>
 
                     <p class="lead font-weight-bold">Description</p>{{ object.title }}</p>

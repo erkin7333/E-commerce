@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Material Design Bootstrap</title>
+    <title>{% block head_title %}E-commerce{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <!-- Bootstrap core CSS -->
@@ -45,14 +47,78 @@
 
 
 
-
     </style>
 </head>
 <body>
 
-<main>
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+
+        <!-- Collapse -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <!-- Left -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link waves-effect" href="{% url 'product:home' %}#">Home</a>
+                </li>
+            </ul>
+
+            <!-- Right -->
+            <ul class="navbar-nav nav-flex-icons">
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link waves-effect">
+                        <span class="badge red z-depth-1 mr-1"> 1 </span>
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'account_logout' %}" class="nav-link waves-effect">
+                        <span class="clearfix d-none d-sm-inline-block"> Logout </span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'account_login' %}" class="nav-link waves-effect">
+                        <span class="clearfix d-none d-sm-inline-block"> Login </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'account_signup' %}" class="nav-link waves-effect">
+                        <span class="clearfix d-none d-sm-inline-block"> Signup </span>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="https://www.facebook.com/" class="nav-link waves-effect" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://twitter.com/" class="nav-link waves-effect" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+</nav>
+<!-- Navbar -->
+<main>
+
+    <div class="container">
+        <nav class="erkin navbar navbar-expand-lg navbar-dark mdb-color lighten-3">
 
             <!-- Navbar brand -->
             <span class="navbar-brand">Categories:</span>
@@ -72,15 +138,11 @@
                         <a class="nav-link" href="{% url 'product:home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Shirts</a>
+                        <a class="nav-link" href="#">Checkout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sport wears</a>
+                        <a class="nav-link" href="#">Products</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Outwears</a>
-                    </li>
-
                 </ul>
                 <!-- Links -->
 
@@ -97,6 +159,7 @@
 </main>
 
 {% block content %}{% endblock %}
+{% block extra_body %}{% endblock %}
 
 <!--Footer-->
 <footer class="page-footer text-center font-small mt-4 wow fadeIn">
@@ -162,11 +225,6 @@
 <script type="text/javascript">
     // Animations initialization
     new WOW().init();
-
-
-
-
-
 
 </script>
 </body>
