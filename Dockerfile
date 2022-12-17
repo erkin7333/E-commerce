@@ -6,8 +6,8 @@ ENV PYTHONUNBUFFERED 1
 COPY ./requirements.txt /tmp/requirements.txt
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
 COPY ./scripts /scripts
-COPY ./appp /config
-WORKDIR /appp
+COPY ./app /config
+WORKDIR /config
 EXPOSE 8000
 
 ARG DEV=false
@@ -35,3 +35,5 @@ RUN python -m venv /py && \
 ENV PATH="/scripts:/py/bin:$PATH"
 
 USER django-user
+
+CMD ["run.sh"]
